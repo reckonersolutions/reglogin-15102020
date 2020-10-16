@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home';
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  declarations: [ AppComponent ],
+  declarations: [ AppComponent, HomeComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
