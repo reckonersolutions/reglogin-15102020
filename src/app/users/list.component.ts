@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class ListComponent implements OnInit {
 
+  users = null;
+
   constructor() {}
 
   ngOnInit() {
