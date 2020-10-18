@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+
+import { AccountService, AlertService } from '../_services';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 
@@ -16,10 +19,12 @@ export class AddEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private accountService: AccountService,
+    private alertService: AlertService
   ){}
 
   ngOnInit() {
-
+    this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
 
     // password not required in edit mode
@@ -44,9 +49,26 @@ export class AddEditComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+    // reset alerts on submit
+    this.alertService.clear();
+
+    // stop here if form is invalid
     if (this.form.invalid) {
-            return;
+        return;
     }
+
+    this.loading = true;
+    if (this.isAddMode) {
+        this.createUser();
+    } else {
+        this.updateUser();
+    }
+  }
+
+  private createUser() {
+  }
+
+  private updateUser() {
   }
 
 }
